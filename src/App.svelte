@@ -11,11 +11,11 @@
   import './helpers/firebase';
 </script>
 
-<main class="bg-background-200">
+<main class="bg-background-200 dark:bg-dark-300">
   <Header />
-  <section class="content">
+  <section class="content p-8">
     <Router {url}>
-      <Route path="diary/:id" component={Diary} />
+      <Route path="diary/:id" let:params><Diary id={params.id}/></Route>
       <Route path="about" component={About} />
       <Route path="create" component={Create} />
       <Route path="/"><Home /></Route>

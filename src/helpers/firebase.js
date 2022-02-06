@@ -1,7 +1,9 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
+import { getAuth, signInWithPopup, GoogleAuthProvider, signOut} from "firebase/auth";
 import { userId } from '../store';
+import { getStorage } from 'firebase/storage';
 import Cookies from 'js-cookie';
 
 // Your web app's Firebase configuration
@@ -17,6 +19,9 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
+export const storage = getStorage(app);
+export const db = getFirestore();
+ 
 const provider = new GoogleAuthProvider();
 const auth = getAuth();
 
@@ -30,8 +35,8 @@ export const signInWithGoogle = () => {
       const user = result.user;
       userId.set(result.user.uid);
       Cookies.set('uid', result.user.uid);
+      document.location.reload();
 
-      console.log(user);
       // ...
     })
     .catch((error) => {
@@ -45,3 +50,17 @@ export const signInWithGoogle = () => {
       // ...
     });
 };
+
+
+export const signOutWithGoogle = () => {
+  signOut(auth).then(() => {
+    // Sign-out successful.
+    Cookies.remove('uid');
+    //画面を更新
+    document.location.reload();
+
+  }).catch((error) => {
+    // An error happened.
+    alert('ログアウトできませんでした。通信環境のよいところで再度実行してください。')
+  });
+}

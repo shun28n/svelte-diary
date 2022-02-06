@@ -21,6 +21,7 @@
     "@rollup/plugin-replace": "^3.0.1",
     "add": "^2.0.6",
     "carbon-icons-svelte": "^10.44.3",
+    "dayjs": "^1.10.7",
     "dotenv": "^10.0.0",
     "firebase": "^9.6.1",
     "js-cookie": "^3.0.1",
@@ -29,6 +30,7 @@
     "smelte": "^1.1.8",
     "svelte-hamburgers": "^3.0.1",
     "svelte-routing": "^1.6.0",
+    "svelte-star-rating": "^1.3.0",
     "yarn": "^1.22.17"
   }
 }
